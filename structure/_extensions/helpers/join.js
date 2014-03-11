@@ -3,11 +3,12 @@
  * Copyright (c) 2014 Jon Schlinkert
  * Licensed under the MIT License (MIT).
  */
+'use strict';
 
-module.exports.register = function (Handlebars) {
-  'use strict';
-
-  Handlebars.registerHelper("join", function(arr, sep) {
-    return arr.join(sep);
-  });
+module.exports = function () {
+  return {
+    join: function(arr, sep) {
+      return arr.join(sep);
+    }
+  };
 };

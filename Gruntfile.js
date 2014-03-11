@@ -120,6 +120,12 @@ module.exports = function(grunt) {
           process: true,
           heading: '<%= site.templates %>/snippets/heading.tmpl',
           prefix: 'language-'
+        },
+
+        // logging
+        log: {
+          level: 'info',
+          theme: 'socket.io'
         }
       },
       site: {
@@ -251,7 +257,7 @@ module.exports = function(grunt) {
    */
 
   // Load npm plugins to provide necessary tasks.
-  grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('grunt-assemble');
   grunt.loadNpmTasks('assemble-less');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');

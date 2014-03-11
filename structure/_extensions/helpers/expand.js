@@ -8,8 +8,10 @@
 
 var file = require('fs-utils');
 
-module.exports.register = function (Handlebars) {
-  Handlebars.registerHelper("expand", function(patterns) {
-    return file.expand(patterns);
-  });
+module.exports = function () {
+  return {
+    expand: function(patterns) {
+      return file.expand(patterns);
+    }
+  };
 };

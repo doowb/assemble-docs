@@ -8,7 +8,7 @@
 
 var path = require('path');
 
-module.exports.register = function (Handlebars) {
+module.exports = function () {
 
   /**
    * JavaScript's replace function, exposed in a helper.
@@ -20,43 +20,45 @@ module.exports.register = function (Handlebars) {
    * @return  {String}
    */
 
-  Handlebars.registerHelper("replace", function(str, pattern, replacement, flags) {
-    flags = flags || 'gi';
-    return str.replace(new RegExp(pattern, flags), replacement);
-  });
+  return {
+    replace: function(str, pattern, replacement, flags) {
+      flags = flags || 'gi';
+      return str.replace(new RegExp(pattern, flags), replacement);
+    },
 
-  /**
-   * This helper is used in the `source-link` popovers to
-   * rename, say `helper-foo` to `"{{foo}}"` or, if not a
-   * helper, rename `bar` to `"bar"`
-   *
-   * @param   {String}  basename   The string to rename.
-   * @return  {String}             The {{renamed}} string
-   */
+    /**
+     * This helper is used in the `source-link` popovers to
+     * rename, say `helper-foo` to `"{{foo}}"` or, if not a
+     * helper, rename `bar` to `"bar"`
+     *
+     * @param   {String}  basename   The string to rename.
+     * @return  {String}             The {{renamed}} string
+     */
 
-  Handlebars.registerHelper("rename", function(basename) {
-    if(~basename.search('helper')) {
-      return '{{' + basename.split('-')[1] + '}}';
+    rename: function(basename) {
+      if(~basename.search('helper')) {
+        return '{{' + basename.split('-')[1] + '}}';
+      }
+      return '"' + basename + '"';
+    },
+
+    /**
+     * Adds a message based on the file extension.
+     * @param   {String}  filepath
+     * @return  {String}
+     */
+
+    filetype: function (filepath) {
+      switch (path.extname(filepath)) {
+        case '.md':
+          return 'markdown source';
+        case '.hbs':
+        case '.tmpl':
+        case '.html':
+          return 'source template';
+        default:
+          return 'source file';
+      }
     }
-    return '"' + basename + '"';
-  });
-
-  /**
-   * Adds a message based on the file extension.
-   * @param   {String}  filepath
-   * @return  {String}
-   */
-
-  Handlebars.registerHelper("filetype", function (filepath) {
-    switch (path.extname(filepath)) {
-      case '.md':
-        return 'markdown source';
-      case '.hbs':
-      case '.tmpl':
-      case '.html':
-        return 'source template';
-      default:
-        return 'source file';
-    }
-  });
+  };
 };

@@ -36,7 +36,6 @@
   },
   "main": "index.js",
   "devDependencies": {
-    "assemble": "git://github.com/assemble/assemble.git#v0.5.0",
     "assemble-contrib-anchors": "~0.1.2",
     "assemble-contrib-decompress": "~0.1.0",
     "assemble-contrib-download": "~0.1.2",
@@ -72,7 +71,8 @@
     "marked": "0.3.0",
     "marked-extras": "~0.2.2",
     "request": "~2.34.0",
-    "template": "~0.1.5"
+    "template": "~0.1.5",
+    "grunt-assemble": "^0.1.5"
   },
   "keywords": [
     "assemble",

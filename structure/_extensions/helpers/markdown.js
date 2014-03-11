@@ -11,8 +11,8 @@ var extras = require('marked-extras');
 var _ = require('lodash');
 
 
-module.exports.register = function (Handlebars, opts) {
-  opts = opts || {};
+module.exports = function (config) {
+  var opts = config.options || {};
   opts.marked = opts.marked || {};
 
   // Initialize `marked-extras`
@@ -25,7 +25,9 @@ module.exports.register = function (Handlebars, opts) {
   marked.setOptions(markedOpts);
 
 
-  Handlebars.registerHelper("markdown", function (options) {
-    return marked(options.fn(this));
-  });
+  return {
+    markdown: function (options) {
+      return marked(options.fn(this));
+    }
+  };
 };

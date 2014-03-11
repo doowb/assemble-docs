@@ -4,10 +4,15 @@
  * Licensed under the MIT License (MIT).
  */
 
-module.exports.register = function (Handlebars) {
-  'use strict';
+'use strict';
 
-  Handlebars.registerHelper("basename", function(filepath) {
-    return require('fs-utils').name(filepath);
-  });
+// node_modules
+var file = require('fs-utils');
+
+module.exports = function () {
+  return {
+    basename: function (filepath) {
+      return file.name(filepath);
+    }
+  };
 };

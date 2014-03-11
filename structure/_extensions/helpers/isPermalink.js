@@ -3,11 +3,12 @@
  * Copyright (c) 2014 Jon Schlinkert
  * Licensed under the MIT License (MIT).
  */
+'use strict';
 
-module.exports.register = function (Handlebars, options) {
-  'use strict';
-
-  Handlebars.registerHelper("isPermalink", function(value, fallback) {
-    return options.permalinks ? value : fallback + '.html';
-  });
+module.exports = function (config) {
+  return {
+    isPermalink: function(value, fallback) {
+      return config.options.permalinks ? value : fallback + '.html';
+    }
+  };
 };

@@ -3,14 +3,11 @@
  * Copyright (c) 2014 Jon Schlinkert
  * Licensed under the MIT License (MIT).
  */
-
+'use strict';
 var _ = require('lodash');
+var Handlebars = require('handlebars');
 
-module.exports.register = function (Handlebars, options) {
-  'use strict';
-
-  var opts = options;
-
+module.exports = function (config) {
   /**
    * Add `active` class for current page.
    * Customize the class in the options hash.
@@ -18,15 +15,17 @@ module.exports.register = function (Handlebars, options) {
    *
    * @usage: {{isActive}}
    */
-  Handlebars.registerHelper('isActive', function(current, options) {
-    var context = _.extend(opts.data, this);
-    options = options || {};
+  return {
+    isActive: function(current, options) {
+      var context = _.extend(config.context(), this);
+      options = options || {};
 
-    var modifier = (options.hash && options.hash.class) ? options.hash.class : 'active';
-    if(context.page.basename === current) {
-      modifier = ' class="' + modifier + '"';
+      var modifier = (options.hash && options.hash.class) ? options.hash.class : 'active';
+      if(context.page.basename === current) {
+        modifier = ' class="' + modifier + '"';
+      }
+      return new Handlebars.SafeString(modifier);
     }
-    return new Handlebars.SafeString(modifier);
-  });
+  };
 };
 

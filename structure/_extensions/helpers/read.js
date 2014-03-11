@@ -9,14 +9,17 @@
 var path = require('path');
 var matter = require('gray-matter');
 var file = require('fs-utils');
+var Handlebars = require('handlebars');
 
-module.exports.register = function (Handlebars) {
+module.exports = function () {
 
-  Handlebars.registerHelper("read", function(filepath) {
-    var str = file.readFileSync(path.resolve(filepath));
+  return {
+    read: function(filepath) {
+      var str = file.readFileSync(path.resolve(filepath));
 
-    // Use gray-matter to parse content in case YAML front matter
-    // exists and needs to be stripped.
-    return new Handlebars.SafeString(matter(str).content + '\n');
-  });
+      // Use gray-matter to parse content in case YAML front matter
+      // exists and needs to be stripped.
+      return new Handlebars.SafeString(matter(str).content + '\n');
+    }
+  }
 };
