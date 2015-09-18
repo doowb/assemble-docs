@@ -1,5 +1,5 @@
 /*
- * Documentation for Assemble: the static site generator and 
+ * Documentation for Assemble: the static site generator and
  * component builder for Node.js, Grunt.js and Yeoman.
  * https://github.com/assemble/assemble-docs/
  *
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
       },
 
       /**
-       * Generate markdown navigation links 
+       * Generate markdown navigation links
        */
       links: {
         options: {
@@ -147,7 +147,7 @@ module.exports = function (grunt) {
       },
 
       /**
-       * "Helpers" section. 
+       * "Helpers" section.
        * Uses: templates/pages/helpers.json
        */
       helpers: {
@@ -162,7 +162,7 @@ module.exports = function (grunt) {
       },
 
       /**
-       * "Plugins" section. 
+       * "Plugins" section.
        * Uses: templates/pages/helpers.json
        */
       plugins: {
