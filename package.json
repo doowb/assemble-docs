@@ -18,7 +18,7 @@
     "type": "MIT",
     "url": "https://github.com/assemble/assemble-docs/blob/master/LICENSE"
   },
-  "main": "Gruntfile.js",
+  "main": "assemblefile.js",
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -51,5 +51,8 @@
       "name": "Brian Woodward",
       "url": "http://github.com/doowb"
     }
-  ]
+  ],
+  "devDependencies": {
+    "assemble": "assemble/assemble#dev"
+  }
 }
