@@ -1,5 +1,5 @@
 ---
-layout: base.hbs
+layout: base
 ---
 
 {{!-- page content
@@ -37,7 +37,7 @@ layout: base.hbs
       <div class="panel panel-docs">
         <h1>{{page.title}}</h1>
         {{#markdown}}
-          {{> body }} {{> generated-links.md }}
+          {% body %} {{> generated-links.md }}
         {{/markdown}}
         <hr>
 

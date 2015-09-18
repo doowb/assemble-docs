@@ -54,7 +54,12 @@
   ],
   "devDependencies": {
     "assemble": "assemble/assemble#dev",
+    "assemble-loader": "^0.1.2",
     "get-pkgs": "^0.2.2",
+    "globby": "^3.0.1",
+    "gulp-extname": "^0.2.0",
+    "handlebars": "^4.0.2",
+    "plasma": "^0.9.1",
     "semver": "^5.0.3",
     "through2": "^2.0.0"
   }
