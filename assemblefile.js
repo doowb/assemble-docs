@@ -9,6 +9,13 @@ app.option('archive.version', '0.4.0');
 var archive = require('./src/plugins/archive')(app);
 app.task('archive', archive('_gh_pages/**/*', 'versions'));
 
-app.task('default');
+
+// copy archived versions to the docs/v folder
+app.task('versions', function () {
+  return app.src('versions/**/*')
+    .pipe(app.dest('_gh_pages/docs/v'));
+});
+
+app.task('default', ['versions']);
 
 module.exports = app;
