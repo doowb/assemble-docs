@@ -5,25 +5,27 @@ var pkg = require('get-pkgs');
 var semver = require('semver');
 var through = require('through2');
 
-module.exports = function (app, version, dest) {
-  return function (done) {
-    pkg(['assemble'], function (err, pkgs) {
-      if (err) return done(err);
-      var old = semver(pkgs[0].version);
-      var current = semver(version);
-      var major = semver.compareIdentifiers(old.major, current.major);
-      var minor = semver.compareIdentifiers(old.minor, current.minor);
+module.exports = function (app) {
+  return function (src, dest, version) {
+    return function (done) {
+      pkg(['assemble'], function (err, pkgs) {
+        if (err) return done(err);
+        var old = semver(pkgs[0].version);
+        var current = semver(version);
+        var major = semver.compareIdentifiers(old.major, current.major);
+        var minor = semver.compareIdentifiers(old.minor, current.minor);
 
-      if (major > 0 || (major === 0 && minor >= 0)) {
-        return done();
-      }
+        if (major > 0 || (major === 0 && minor >= 0)) {
+          return done();
+        }
 
-      app.src('_gh_pages/**/*', {dotfiles: true})
-        .pipe(manifest(app, old))
-        .pipe(app.dest(dest))
-        .on('error', done)
-        .on('end', done);
-    });
+        app.src(src, {dotfiles: true})
+          .pipe(manifest(app, old))
+          .pipe(app.dest(dest))
+          .on('error', done)
+          .on('end', done);
+      });
+    };
   };
 };
 
