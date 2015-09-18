@@ -6,12 +6,12 @@ var semver = require('semver');
 var through = require('through2');
 
 module.exports = function (app) {
-  return function (src, dest, version) {
+  return function (src, dest) {
     return function (done) {
-      pkg(['assemble'], function (err, pkgs) {
+      pkg([app.option('manifest.app-name')], function (err, pkgs) {
         if (err) return done(err);
         var old = semver(pkgs[0].version);
-        var current = semver(version);
+        var current = semver(app.option('manifest.version'));
         var major = semver.compareIdentifiers(old.major, current.major);
         var minor = semver.compareIdentifiers(old.minor, current.minor);
 
