@@ -5,7 +5,13 @@ var semver = require('semver');
 var through = require('through2');
 
 module.exports = function (app) {
-  return function (src, dest, version) {
+
+  return function (src, dest) {
+    var version = app.option('archive.version');
+    if (!version) {
+      throw new Error('expected option `archive.version` to be specified');
+    }
+
     return function () {
       version = semver(version);
       dest = path.join(dest, versionPath(version));
