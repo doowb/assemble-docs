@@ -31,7 +31,6 @@ app.task('versions', function () {
 app.task('load', function (done) {
   app.data(plasma.load(['src/data/*.{json,yml}', 'package.json']))
   app.helpers(require('./src/extensions/helpers/helpers.js'));
-  console.log(app._.helpers);
   // app.helpers(['src/extensions/*.js', 'helper-prettify']);
   app.partials.load(['templates/includes/**/*.{hbs,md}']);
   app.layouts.load(['templates/layouts/**/*.hbs']);
