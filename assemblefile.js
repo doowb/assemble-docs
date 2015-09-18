@@ -46,6 +46,13 @@ app.task('docs', function () {
     .pipe(app.dest('_gh_pages'));
 });
 
+app.task('watch', function (done) {
+  app.watch(['src/**/*', 'templates/**/*'], ['default']);
+  done();
+});
+
+app.task('dev', ['default', 'watch']);
+
 app.task('default', ['versions', 'load', 'docs']);
 
 module.exports = app;
