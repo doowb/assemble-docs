@@ -35,6 +35,54 @@ var globFiles = function(src) {
   return content;
 };
 
+helpers['default'] = function (a, b) {
+  return a || b;
+};
+
+helpers['isnt'] = function (a, b, options) {
+  if (a === b) {
+    return options.inverse(this.context);
+  }
+  return options.fn(this.context);
+};
+
+helpers['is'] = function (a, b, options) {
+  if (a === b) {
+    return options.fn(this.context);
+  }
+  return options.inverse(this.context);
+};
+
+helpers['relative'] = function (from, to) {
+  return '';
+};
+
+helpers['uppercase'] = function(str) {
+  return (typeof str === 'string' ? str.toUpperCase() : str);
+};
+
+helpers['lowercase'] = function(str) {
+  return (typeof str === 'string' ? str.toLowerCase() : str);
+};
+
+helpers['truncate'] = function(str, num, end, options) {
+  if (typeof end === 'object') {
+    options = end;
+    end = '';
+  }
+  if (str.length > num) {
+    return str.substr(0, num) + end;
+  }
+  return str;
+}
+
+helpers['gt'] = function (a, b, options) {
+  if (a > b) {
+    return options.fn(this.context);
+  }
+  return options.inverse(this.context);
+};
+
 
 // helpers['readYFM'] = function(src) {
 //   var props = assemble.data.readYFM(src, {fromFile: true});
