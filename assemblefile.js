@@ -4,14 +4,10 @@ var assemble = require('assemble');
 
 var app = assemble();
 
-// manifest plugin configuration
-app.option('manifest.version', '0.6.0');
-app.option('manifest.app-name', 'assemble');
+// archive a _gh_pages folder to the specific version folder and build a manifest of archived files
+var archive = require('./src/plugins/archive')(app);
+app.task('archive', archive('_gh_pages/**/*', 'versions', '0.4.0'));
 
-// manifest plugin that will generate a new manifest file if version minor bump
-var manifest = require('./src/plugins/manifest')(app);
-app.task('manifest', manifest('_gh_pages/**/*', 'versions'));
-
-app.task('default', ['manifest']);
+app.task('default', ['archive']);
 
 module.exports = app;
