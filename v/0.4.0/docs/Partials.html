@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" Static site generator for Grunt.js and Yeoman. Assemble makes it dead simple to build modular sites, blogs, gh-pages, components and documentation from reusable templates and data.">
+    <meta name="author" content="http://twitter.com/jonschlinkert">
+    <title>
+      Partials | Assemble
+    </title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/assemble.css">
+    <link rel="stylesheet" href="../assets/css/markdown.css">
+
+    <!-- Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+  <script src="../assets/js/html5shiv.js"></script>
+  <script src="../assets/js/respond/respond.min.js"></script>
+<![endif]-->
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      var pluginUrl =
+        '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+      _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+      _gaq.push(['_setAccount', 'UA-33358518-5']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script type="application/ld+json">
+      [{
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "Jon Schlinkert",
+        "description": "Co-creator of Assemble.",
+        "url": "https://github.com/jonschlinkert"
+      }, {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": "Brian Woodward",
+        "description": "Co-creator of Assemble.",
+        "url": "https://github.com/doowb"
+      }]
+    </script>
+  </head>
+  <body style="background: white;" data-spy="scroll" data-target=".bs-sidebar">
+    <div class="navbar" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+          </button>
+          <a href="../" class="navbar-brand">ASSEMBLE</a> 
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="../docs/">Docs</a> 
+            </li>
+
+            <!--<li> <a href="../boilerplates/">Boilerplates</a>  </li>-->
+            <li>
+              <a href="../plugins/">Plugins</a> 
+            </li>
+            <li>
+              <a href="../helpers/">Helpers</a> 
+            </li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">
+
+            <!--<li> <a href="../examples/">Examples</a>  </li>-->
+
+            <!--<li> <a href="../tutorials/">Tutorials</a>  </li> -->
+            <li>
+              <a href="../blog/">Blog</a> 
+            </li>
+            <li>
+              <a href="https://github.com/assemble/assemble/archive/master.zip" title="Download Assemble" onclick="_gaq.push(['_trackEvent', 'navbar-download', 'clicked'])">
+                <i class="glyphicon glypicon-large glyphicon-download"></i>
+              </a> 
+            </li>
+            <li>
+              <a href="https://github.com/assemble/assemble/" onclick="_gaq.push(['_trackEvent', 'click-repo', 'clicked'])">GitHub Repo</a> 
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <header class="masthead subhead">
+      <div class="container">
+        <div class="row">
+          <div class="col col-lg-12">
+            <style type="text/css" media="screen">
+              #custom-tweet-button > a {
+                float: right;
+                display: inline-block;
+                padding: 8px 16px 8px 36px;
+                margin: 15px 0 0 0;
+                background: url('https://twitter.com/favicons/favicon.ico') 15px center no-repeat;
+                background-color: transparent;
+                border: none;
+                border-radius: 4px;
+              }
+              #custom-tweet-button > a:hover {
+                background-color: rgba(255, 255, 255, .07);
+              }
+            </style>
+            <div id="custom-tweet-button">
+              <a href="https://twitter.com/intent/tweet?screen_name=assemblejs" data-related="jonschlinkert:Jon Schlinkert,doowb:Brian Woodward" data-lang="en" target="_blank">&nbsp;Tweet</a> 
+              <script>
+                ! function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                  }
+                }(document, "script", "twitter-wjs");
+              </script>
+            </div>
+            <h1>
+              <span class="text-muted">Docs /&nbsp;</span> 
+              templates
+            </h1> 
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col col-lg-3">
+          <div class="sidebar">
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <a href="index.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'Welcome/Welcome!']);">Welcome</a> 
+              </li>
+            </ul>
+            <span class="nav-section-title">
+              Getting Started
+            </span> 
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <a href="FAQ.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'getting started/FAQ']);">FAQ</a> 
+              </li>
+              <li>
+                <a href="Installation.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'getting started/Installation']);">Installation</a> 
+              </li>
+              <li>
+                <a href="Introduction.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'getting started/Introduction']);">Introduction</a> 
+              </li>
+              <li>
+                <a href="About.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'getting started/About']);">About</a> 
+              </li>
+              <li>
+                <a href="Quickstart.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'getting started/Quickstart']);">Quickstart</a> 
+              </li>
+              <li>
+                <a href="Resources.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'getting started/Resources']);">Resources</a> 
+              </li>
+            </ul>
+            <span class="nav-section-title">
+              Templates
+            </span> 
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <a href="Pages-Collections.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Pages Collections']);">Pages Collections</a> 
+              </li>
+              <li>
+                <a href="Collections.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Collections']);">Collections</a> 
+              </li>
+              <li>
+                <a href="Custom-Helpers.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Custom Helpers']);">Custom Helpers</a> 
+              </li>
+              <li>
+                <a href="Helpers.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Helpers']);">Helpers</a> 
+              </li>
+              <li>
+                <a href="Layouts.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Layouts']);">Layouts</a> 
+              </li>
+              <li>
+                <a href="Pages.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Pages']);">Pages</a> 
+              </li>
+              <li class="active">
+                <a href="Partials.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Partials']);">Partials</a> 
+              </li>
+              <li>
+                <a href="Templates-Overview.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'templates/Templates Overview']);">Templates Overview</a> 
+              </li>
+            </ul>
+            <span class="nav-section-title">
+              Data
+            </span> 
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <a href="Context.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'data/Context']);">Context</a> 
+              </li>
+              <li>
+                <a href="Data.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'data/Data']);">Data</a> 
+              </li>
+              <li>
+                <a href="YAML-front-matter.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'data/YAML front matter']);">YAML front matter</a> 
+              </li>
+              <li>
+                <a href="YAML.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'data/YAML data']);">YAML data</a> 
+              </li>
+            </ul>
+            <span class="nav-section-title">
+              Configuration
+            </span> 
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <a href="Built-in-Variables.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/Built-in Variables']);">Built-in Variables</a> 
+              </li>
+              <li>
+                <a href="Errors.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/Errors']);">Errors</a> 
+              </li>
+              <li>
+                <a href="Options.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/Options Overview']);">Options Overview</a> 
+              </li>
+              <li>
+                <a href="options-assets.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.assets']);">options.assets</a> 
+              </li>
+              <li>
+                <a href="options-collections.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.collections']);">options.collections</a> 
+              </li>
+              <li>
+                <a href="options-data.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.data']);">options.data</a> 
+              </li>
+              <li>
+                <a href="options-engine.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.engine']);">options.engine</a> 
+              </li>
+              <li>
+                <a href="options-ext.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.ext']);">options.ext</a> 
+              </li>
+              <li>
+                <a href="options-helpers.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.helpers']);">options.helpers</a> 
+              </li>
+              <li>
+                <a href="options-layout.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.layout']);">options.layout</a> 
+              </li>
+              <li>
+                <a href="options-layoutdir.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.layoutdir']);">options.layoutdir</a> 
+              </li>
+              <li>
+                <a href="options-layouts.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.layouts']);">options.layouts</a> 
+              </li>
+              <li>
+                <a href="options-marked.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.marked']);">options.marked</a> 
+              </li>
+              <li>
+                <a href="options-partials.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'configuration/options.partials']);">options.partials</a> 
+              </li>
+            </ul>
+            <span class="nav-section-title">
+              Content
+            </span> 
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <a href="Cheatsheet-Markdown.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'content/Markdown Cheatsheet']);">Markdown Cheatsheet</a> 
+              </li>
+              <li>
+                <a href="Embedding-Code.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'content/Embedding Code']);">Embedding Code</a> 
+              </li>
+              <li>
+                <a href="Markdown.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'content/Markdown']);">Markdown</a> 
+              </li>
+            </ul>
+            <span class="nav-section-title">
+              Development
+            </span> 
+            <ul class="nav nav-pills nav-stacked">
+              <li>
+                <a href="External-Libraries.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'development/External Libraries']);">External Libraries</a> 
+              </li>
+              <li>
+                <a href="Methods.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'development/Methods']);">Methods</a> 
+              </li>
+              <li>
+                <a href="../contributing/index.html" onclick="_gaq.push(['_trackEvent', 'Sidenav', 'clicked', 'development/Contributing to Assemble']);">Contributing to Assemble</a> 
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col col-lg-9">
+          <div class="panel panel-docs">
+            <h1>Partials</h1> 
+            <blockquote>
+              <p>Like &quot;includes&quot;, partials are reusable fragments of code that can be included in a page and rendered. Partials are useful when you have blocks of reusable code that are applicable in different contexts.</p>
+            </blockquote>
+            <h2 id="assemble-mustache-handlebars-and-partials">Assemble, Mustache, Handlebars and Partials</h2> 
+            <p>Partials are a part of the
+              <a href="http://mustache.github.io/">Mustache template language</a> of which Handlebars is superset. More information about partials in general can be found in the
+              <a href="http://mustache.github.io/mustache.5.html">Mustache documentation</a>. Assemble, when used with the
+              <a href="http://handlebarsjs.com/">Handlebars</a> engine, allows partials to be defined and used.</p>
+            <h2 id="an-example-with-handlebars">An Example with Handlebars</h2> 
+            <p>Let us consider a simple partial as an example that would be used to generate an HTML <code>img</code> tag:</p>
+            <p><code>img.hbs</code>
+            </p>
+            <pre><code class="language-html">&lt;img src=&quot;{{assets}}/images/{{URL}}&quot;
+     class=&quot;{{#each classes}}{{this}} {{/each}}&quot;
+     id=&quot;{{#if id}}{{id}}{{else}}{{slugify title}}{{/if}}&quot;
+     width=&quot;{{width}}&quot;
+     height=&quot;{{height}}&quot;
+     title=&quot;{{title}}&quot;
+     alt=&quot;{{#if alt}}{{alt}}{{else}}{{title}}{{/if}}&quot;/&gt;</code></pre>
+            <p>As you can see, Handlebars tags are used as placeholders for inserting various properties. For example, the <code>{{URL}}</code> tag will insert a property <code>URL</code> from the current context.</p>
+            <p>Now that we have defined a partial, we can include the partial in a template via the standard Mustache syntax <code>{{&gt; [partial-name w/o extension]}}</code>. Using our <code>img.hbs</code> partial example above and the following HTML template:</p>
+            <p><code>header.html</code>
+            </p>
+            <pre><code class="language-html">---
+logo:
+  URL: media/images/logo.png
+    classes:
+    - logo
+    - main
+  width: 80
+  height: 40
+  title: Assemble This!
+---
+&lt;header class=&quot;root&quot;&gt;
+    {{#page.logo}}
+      {{&gt; img}}
+    {{/page.logo}}
+&lt;/header&gt;</code></pre>
+            <p>Assemble would produce the following output:</p>
+            <pre><code class="language-html">&lt;header class=&quot;root&quot;&gt;
+&lt;img src=&quot;/images/media/images/logo.png&quot;
+     class=&quot;logo main &quot;
+     id=&quot;assemble-this&quot;
+     width=&quot;80&quot;
+     height=&quot;40&quot;
+     title=&quot;Assemble This!&quot;
+     alt=&quot;Assemble This!&quot;/&gt;
+&lt;/header&gt;</code></pre>
+            <p>Note that we enclosed our <code>{{&gt; img}}</code> partial invocation inside the <code>{{#page.logo}} .. {{/page.logo}}</code> section to setup the context in which the partial properties will be evaluated. In this case they are coming from the
+              YAML front matter we defined in <code>header.html</code>, though the context can be set via the many methods supported by Assemble and Handlebars.</p>
+            <p>Handlebars provides a more convenient syntax for invoking a partial with a given context via <code>{{&gt; [partial-name] [context]}}</code>. Thus, we could change our <code>header.html</code> template as follows:</p>
+            <p><code>header.html</code>
+            </p>
+            <pre><code class="language-html">---
+logo:
+  URL: media/images/logo.png
+    classes:
+    - logo
+    - main
+  width: 80
+  height: 40
+  title: Assemble This!
+---
+&lt;header class=&quot;root&quot;&gt;
+    {{&gt; img page.logo}}
+&lt;/header&gt;</code></pre>
+            <p>and Assemble would produce the same output as above. With this syntax, the desired context in which to evaluate the partial is passed explicitly as a paramter to the partial.</p>
+            <h2 id="configuration">Configuration</h2> 
+            <p>To use partials in Assemble, we must specify where partials can be found in the configuration options for the <code>assemble</code> Grunt task:</p>
+            <p><code>Gruntfile.js</code>
+            </p>
+            <pre><code class="language-js">    assemble: {
+        options: {
+            <span class="comment">// setup default partials locations</span> 
+            partials: [<span class="string">'templates/includes/**/*.{hbs,md}'</span> ]
+            }
+        }</code></pre>
+            <p>as well as within a collection&#39;s options:</p>
+            <p><code>Gruntfile.js</code>
+            </p>
+            <pre><code class="language-js">    assemble: {
+        my-collection: {
+            options: {
+                partials: [<span class="string">'my-collection/templates/partials/**/*.{hbs,md}'</span> ]
+            }
+        }
+    }</code></pre>
+            <h2 id="yaml-front-matter-in-partials">YAML Front Matter in Partials</h2> 
+            <p>Though partials can have YAML front matter, currently in Handlebars there is a
+              <a href="https://github.com/wycats/handlebars.js/pull/182">known issue</a> which causes the YAML front matter in a partial to be ignored if the partial is invoked within <em>any</em> context. Thus, the following updated <code>img.hbs</code> partial from above with YAML front matter:</p>
+            <p><code>img.hbs</code>
+            </p>
+            <pre><code class="language-html">---
+class: image
+---
+&lt;img src=&quot;{{assets}}/images/{{URL}}&quot;
+     class=&quot;{{#each classes}}{{this}} {{/each}}{{class}}&quot;
+     id=&quot;{{#if id}}{{id}}{{else}}{{slugify title}}{{/if}}&quot;
+     width=&quot;{{width}}&quot;
+     height=&quot;{{height}}&quot;
+     title=&quot;{{title}}&quot;
+     alt=&quot;{{#if alt}}{{alt}}{{else}}{{title}}{{/if}}&quot;/&gt;</code></pre>
+            <p>would produce the same output as above, neglecting to add on the <code>{{class}}</code> property as listed in the partial.</p>
+            <p>Fortunately Assemble provides two helpers which will merge the partial&#39;s YAML front matter into the context and give the expected results:</p>
+            <ul>
+              <li>
+                <a href="https://github.com/helpers/handlebars-helper-partial">handlebars-helper-partial</a> 
+              </li>
+              <li>
+                <a href="https://github.com/helpers/handlebars-helper-include">handlebars-helper-include</a> 
+              </li>
+            </ul>
+            <p>So taking our updated example partial, we could use the Assemble <code>partial</code> helper in the following way to be sure our partial&#39;s YAML front matter data is merged into the overall context when evaluated:</p>
+            <p><code>header.html</code>
+            </p>
+            <pre><code class="language-html">&lt;header class=&quot;root&quot;&gt;
+    {{partial &#39;img&#39; page.logo}}
+&lt;/header&gt;</code></pre>
+            <p>Note how when using the <code>{{partial}}</code> helper we must put the name of the partial to include in quotes.</p>
+            <p>Finally, Assemble would produce the following output:</p>
+            <pre><code class="language-html">&lt;header class=&quot;root&quot;&gt;
+    &lt;img src=&quot;../assets/images/media/images/logo.png&quot;
+     class=&quot;logo main image&quot;
+     id=&quot;assemble-this&quot;
+     width=&quot;80&quot;
+     height=&quot;40&quot;
+     title=&quot;Assemble This!&quot;
+     alt=&quot;Assemble This!&quot;/&gt;
+&lt;/header&gt;</code></pre>
+            <p>with the partial&#39;s own YAML front matter included in the context, producing the extra <code>image</code> class attribute value.</p>
+            <h2 id="partials-in-handlebars-specifics">Partials in Handlebars Specifics</h2> 
+            <p>The <code>Handlebars.registerPartial</code> method, which registers a partial, accepts the name of the partial as its first argument and either a <em>template source string</em> or a <em>compiled template</em> as its second argument. Accepting a
+              compiled template as the second argument enables you to, for example, use the partial in a loop that outputs a list but also append items to the list later using the partial&#39;s template function. For an example of this, check out the
+              <a
+              href="https://github.com/helpers/handlebars-helper-include/blob/master/index.js">handlebars-helpers-include</a> code.</p>
+            <h4 id="also-see-options-partials-options-partials-">Also see [options.partials][options-partials] →</h4> 
+            <hr>
+            <p>
+              <a href="http://github.com/assemble/assemble-docs/blob/master/templates/pages/docs/Partials.hbs">See the template for this page →</a> 
+            </p>
+            <div class="alert">
+              <style type="text/css" media="screen">
+                .alert iframe {
+                  float: right;
+                  margin: 7px -30px 0 0;
+                  vertical-align: text-top;
+                }
+              </style>
+              <iframe src="http://ghbtns.com/github-btn.html?user=assemble&amp;repo=assemble&amp;type=watch&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+              <iframe src="http://ghbtns.com/github-btn.html?user=assemble&amp;repo=assemble&amp;type=fork&amp;count=true&amp;size=large" allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+              <p>Find an error?
+                <a class="alert-link" href="https://github.com/assemble/assemble-docs/issues?state=open">Let us know →</a> 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/holder.js"></script>
+    <script src="../assets/js/highlight.js"></script>
+    <script src="../assets/js/showup.js"></script>
+    <script>
+      $().showUp('.navbar');
+    </script>
+  </body>
+</html>
