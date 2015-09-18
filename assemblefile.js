@@ -2,6 +2,7 @@
 
 var loader = require('assemble-loader');
 var extname = require('gulp-extname');
+var drafts = require('gulp-drafts');
 var assemble = require('assemble');
 var Plasma = require('plasma');
 var path = require('path');
@@ -40,6 +41,7 @@ app.task('load', function (done) {
 app.task('docs', function () {
   return app.src('templates/pages/*.hbs')
     .pipe(app.renderFile())
+    .pipe(drafts())
     .pipe(extname())
     .pipe(app.dest('_gh_pages'));
 });
