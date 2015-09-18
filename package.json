@@ -53,6 +53,11 @@
     }
   ],
   "devDependencies": {
-    "assemble": "assemble/assemble#dev"
+    "assemble": "assemble/assemble#dev",
+    "get-pkgs": "^0.2.2",
+    "semver": "^5.0.3"
+  },
+  "dependencies": {
+    "through2": "^2.0.0"
   }
 }
