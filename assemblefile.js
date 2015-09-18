@@ -8,6 +8,6 @@ var app = assemble();
 var archive = require('./src/plugins/archive')(app);
 app.task('archive', archive('_gh_pages/**/*', 'versions', '0.4.0'));
 
-app.task('default', ['archive']);
+app.task('default');
 
 module.exports = app;
